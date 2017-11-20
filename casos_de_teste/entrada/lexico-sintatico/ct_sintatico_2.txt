@@ -1,1 +1,23 @@
-﻿mapa(s)
+//Size must be INT > 0
+map(size:grama) {
+  import tile{
+    grass{
+      path : "/grass.png"
+      nivel : 11
+      acao {
+      queimar {
+        path : "/grass_queimada.png"
+      }
+      }
+      acao{
+      crescer{
+        path : "/tree.png"
+      }
+      }
+    }
+  }
+
+  commands{
+    add grama position(20,20)
+  }
+}

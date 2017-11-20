@@ -13,9 +13,8 @@ SINTATICO = 'lexico-sintatico/'
 
 TESTE = SINTATICO
 
-CAMINHO_ARQUIVOS_ENTRADA = 'compiladores_t3/casos_de_teste/entrada/'
+CAMINHO_ARQUIVOS_ENTRADA = '/tile2dmap/casos_de_teste/entrada/'
 
-EXECUCAO_CASOS_DE_TESTE = True
 
 
 def casos_de_teste_sintatico():
@@ -26,10 +25,10 @@ def casos_de_teste_sintatico():
         with open(DIRETORIO_PROJETO + CAMINHO_ARQUIVOS_ENTRADA + SINTATICO + 'ct_sintatico_' + str(i) + '.txt',
                   encoding='utf-8') as caso_de_teste:
             programa = caso_de_teste.read()
-            
+
             programa_input = antlr4.InputStream(programa)
 
-            
+
 
             lexer = tileLexer(input=programa_input)
             lexer.removeErrorListeners()
@@ -42,7 +41,7 @@ def casos_de_teste_sintatico():
             parser.addErrorListener(erros_sintaticos)
             try:
                 parser.mapa()
-                print('[CT' + str(i) + '] compilação finalizada.')
+                print('[CT' + str(i) + '_SINTATICO] compilação finalizada.')
             except Exception as e:
                 print('[CT' + str(i) + '_SINTATICO] ' + str(e), file=sys.stderr)
                 pass
@@ -51,6 +50,6 @@ def casos_de_teste_sintatico():
 
 def main():
     casos_de_teste_sintatico()
-    
+
 if __name__ == '__main__':
     main()

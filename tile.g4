@@ -26,27 +26,33 @@ NAME
     : [a-zA-Z_][a-zA-Z_0-9]*
     ;
 
+
+/* Bloco principal */
+
 mapa:
-	'map' '(' size ')' '{' tile? commands? '}' EOF;
+	'map' '(' size ')' '{' 'import' '{' tile? '}' 'commands' ('{'commands?'}')? '}' EOF;
+
+/* Comandos para se utilizar para preencher / alterar o mapa , podem ser dinamicos(especiais)
+   se forem criadas acoes anteriormente na importacao de tiles */
 
 commands:
   (add | remove | especial | loop) recur_commands ;
 
-recur_commands:
-    commands | ;
+recur_commands:  commands | ;
 
+/* Melhorar loop apenas X e Y */
 
 loop:
-    'preencher de' INTEGER_NUMBER 'ate' INTEGER_NUMBER ID;
+    'preencher' ('horizontal' | 'vertical') INTEGER_NUMBER 'ate' INTEGER_NUMBER ID;
 add:
     'add' ID 'position' '(' INTEGER_NUMBER INTEGER_NUMBER ')';
 remove:
     'remove' ID 'position' '(' INTEGER_NUMBER INTEGER_NUMBER ')';
 especial:
-    ID 'position' '(' INTEGER_NUMBER INTEGER_NUMBER ')';
+    ID ID 'position' '(' INTEGER_NUMBER INTEGER_NUMBER ')';
 
 tile:
-    'import tile' '{' ID '{' path nivel? acao? '}' '}' recur_tiles;
+    ID '{' path nivel? acao? '}' recur_tiles;
 
 acao:
   'acao' '{' ID '{' path '}' '}' recur_acao;

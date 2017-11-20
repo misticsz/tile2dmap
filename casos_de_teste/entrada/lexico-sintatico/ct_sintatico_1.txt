@@ -1,5 +1,6 @@
+//Mapa bem definido
 map(size:20) {
-  import tile{
+  import {
     grass{
       path : "/grass.png"
       nivel : 11
@@ -16,6 +17,9 @@ map(size:20) {
     }
   }
 
-  add grass position(20 20)
-  preencher de 15 ate 20 grass
+  commands{
+    add grass position(20 20)
+    queimar grass position(20 20)
+    preencher horizontal 11 ate 20 grass
+  }
 }
