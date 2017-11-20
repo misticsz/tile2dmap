@@ -1,9 +1,3 @@
-# UNIVERSIDADE FEDERAL DE SÃO CARLOS
-# Construção de Compiladores 2 - 2016/2
-# Trabalho 3
-
-# Marcelo de Oliveira da Silva
-
 import antlr4
 import os
 import sys
