@@ -14,11 +14,7 @@ ERRO: .;
 
 
 INTEGER_NUMBER
-:   DIGIT+;
-
-
-fragment
-DIGIT: [0-9];
+:   [0-9]+;
 
 COMMA   :   ',';
 
@@ -68,4 +64,4 @@ nivel:
   'nivel' ':' INTEGER_NUMBER;
 
 path:
-  'path' ':' INTEGER_NUMBER;
+  'path' ':' CADEIA;
