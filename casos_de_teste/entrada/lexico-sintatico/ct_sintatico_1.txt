@@ -1,0 +1,21 @@
+map(size:20) {
+  import tile{
+    grass{
+      path : "/grass.png"
+      nivel : 01
+      acao {
+      queimar {
+        path : "/grass_queimada.png"
+      }
+      }
+      acao{
+      crescer{
+        path : "/tree.png"
+      }
+      }
+    }
+  }
+
+  add grass position(20 20)
+  preencher de 15 ate 20 grass
+}
