@@ -14,7 +14,7 @@ ERRO: .;
 
 
 INTEGER_NUMBER
-:   [0-9]+;
+:   [0-9][0-9]*;
 
 COMMA   :   ',';
 

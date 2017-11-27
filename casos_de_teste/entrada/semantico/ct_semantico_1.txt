@@ -1,4 +1,4 @@
-map(size:20) {
+map(size:2) {
   import tile{
     grass{
       path : "/grass.png"
