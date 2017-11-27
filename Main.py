@@ -16,7 +16,7 @@ SEMANTICO = 'semantico/'
 
 TESTE = SINTATICO
 
-CAMINHO_ARQUIVOS_ENTRADA = 'compiladores_t3/casos_de_teste/entrada/'
+CAMINHO_ARQUIVOS_ENTRADA = '/tile2dmap/casos_de_teste/entrada/'
 
 EXECUCAO_CASOS_DE_TESTE = True
 def casos_de_teste_semantico():
@@ -76,7 +76,7 @@ def casos_de_teste_sintatico():
             parser.addErrorListener(erros_sintaticos)
             try:
                 parser.mapa()
-                print('[CT' + str(i) + '] compilação finalizada.')
+                print('[CT' + str(i) + '_SINTATICO] compilação finalizada.')
             except Exception as e:
                 print('[CT' + str(i) + '_SINTATICO] ' + str(e), file=sys.stderr)
                 pass
