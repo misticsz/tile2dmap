@@ -1,14 +1,24 @@
-<!DOCTYPE html><html><head><script type="text/javascript">var ctx = null;size = 30
+<!DOCTYPE html><html><head><script type="text/javascript">var ctx = null;size = 20
     var i = 0;
     var gameMap = new Array();
 
-    for(i=0;i<=30*30;i++){
+    for(i=0;i<=20*20;i++){
         gameMap[i] = 0;
     }
     /*Tile Loading */
     var image = new Array();
-    image[0].src = "/grass.png";
-    image[1].src = "/gra2ss.png"
+    var tiles = new Array();
+
+    tile[0] = { 
+ path:"http://rimworldwiki.com/images/2/26/Ground_metal_tile.png", name:'grass', action :{queimar: { path:"/grass_queimada.png"},
+crescer: { path:"/tree.png"},}};
+image[0].src = tile[0].path;
+tile[1] = { 
+ path:"https://d2ujflorbtfzji.cloudfront.net/key-image/d21b73d7-cfd4-4d3a-a634-19dc6e456942.png", name:'grass', action :{queimar: { path:"/grass_queimada.png"},
+crescer: { path:"/tree.png"},}};
+image[1].src = tile[1].path;
+
+    {images}
 
     var currentSecond = 0, frameCount = 0, framesLastSecond = 0;
     window.onload = function()
@@ -17,3 +27,6 @@
     	requestAnimationFrame(drawGame);
     	ctx.font = "bold 10pt sans-serif";
     };
+
+
+    

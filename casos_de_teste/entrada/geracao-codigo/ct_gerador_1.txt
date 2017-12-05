@@ -1,8 +1,8 @@
 //Mapa bem definido
-map(size:30) {
+map(size:20) {
   import {
     grass{
-      path : "/grass.png"
+      path : "http://rimworldwiki.com/images/2/26/Ground_metal_tile.png"
       nivel : 11
       acao {
       queimar {
@@ -16,7 +16,7 @@ map(size:30) {
       }
     }
     grass{
-      path : "/gra2ss.png"
+      path : "https://d2ujflorbtfzji.cloudfront.net/key-image/d21b73d7-cfd4-4d3a-a634-19dc6e456942.png"
       nivel : 11
       acao {
       queimar {
