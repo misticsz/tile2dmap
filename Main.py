@@ -6,19 +6,64 @@ from ANTLR.tileLexer import *
 from ANTLR.tileParser import *
 from ErrosSintaticosErrorListener import ErrosSintaticosErrorListener
 from AnalisadorSemantico import AnalisadorSemantico
+from GeradorCodigo import *
 
 
 DIRETORIO_PROJETO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SINTATICO = 'lexico-sintatico/'
 SEMANTICO = 'semantico/'
+GERACAO_DE_CODIGO = 'geracao-codigo/'
 
 
 TESTE = SINTATICO
 
 CAMINHO_ARQUIVOS_ENTRADA = '/tile2dmap/casos_de_teste/entrada/'
+CAMINHO_ARQUIVOS_SAIDA = '/tile2dmap/casos_de_teste/saida/'
 
 EXECUCAO_CASOS_DE_TESTE = True
+
+def casos_de_teste_gerador():
+    print('----------------------------------------------------------')
+    print('CASOS DE TESTE DO GERADOR DE CÓDIGO - 20 CASOS')
+    print('----------------------------------------------------------')
+    for i in range(1, 2):
+        with open(DIRETORIO_PROJETO + CAMINHO_ARQUIVOS_ENTRADA + GERACAO_DE_CODIGO + 'ct_gerador_' + str(i) + '.txt',
+                  encoding='utf-8') as caso_de_teste:
+            programa = caso_de_teste.read()
+            programa_input = antlr4.InputStream(programa)
+
+            lexer = tileLexer(input=programa_input)
+            lexer.removeErrorListeners()
+            tokens = antlr4.CommonTokenStream(lexer=lexer)
+
+            parser = tileParser(tokens)
+
+            parser.removeErrorListeners()
+            erros_sintaticos = ErrosSintaticosErrorListener()
+            parser.addErrorListener(erros_sintaticos)
+            try:
+                programa = parser.mapa()
+
+                gerador_de_codigo = GeradorCodigo()
+                gerador_de_codigo.visitMapa(programa)
+
+                codigo_gerado = gerador_de_codigo.getCodigo()
+
+                arquivo = DIRETORIO_PROJETO + CAMINHO_ARQUIVOS_SAIDA + GERACAO_DE_CODIGO + 'ct_gerador_' + \
+                          str(i) + '.html'
+
+                arquivo_saida = open(arquivo, 'w', encoding='utf-8')
+                arquivo_saida.write(codigo_gerado)
+                arquivo_saida.close()
+
+                print('[CT' + str(i) + '_GERADOR] Compilação finalizada' +
+                      (' com warnings. ' if warnings != '' else ' sem erros.'))
+            except Exception as e:
+                print('[CT' + str(i) + '_GERADOR] ' + str(e), file=sys.stderr)
+                pass
+
+
 def casos_de_teste_semantico():
     print('----------------------------------------------------------')
     print('CASOS DE TESTE DO ANALISADOR SEMÂNTICO')
@@ -84,7 +129,7 @@ def casos_de_teste_sintatico():
 
 
 def main():
-    casos_de_teste_semantico()
+    casos_de_teste_gerador()
 
 if __name__ == '__main__':
     main()

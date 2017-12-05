@@ -8,7 +8,4 @@ class AnalisadorSemantico(tileVisitor):
 
 
     def visitMapa(self, ctx: tileParser.MapaContext):
-        print(ctx.size().getText())
-        if ctx.size() is None:
-            self.get_erro_parametro_nao_permitido(ctx.start,'cor')
-        return
+        print(ctx.size().INTEGER_NUMBER())

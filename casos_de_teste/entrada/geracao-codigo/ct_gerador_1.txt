@@ -1,8 +1,22 @@
 //Mapa bem definido
-map(size:20) {
+map(size:30) {
   import {
     grass{
       path : "/grass.png"
+      nivel : 11
+      acao {
+      queimar {
+        path : "/grass_queimada.png"
+      }
+      }
+      acao{
+      crescer{
+        path : "/tree.png"
+      }
+      }
+    }
+    grass{
+      path : "/gra2ss.png"
       nivel : 11
       acao {
       queimar {

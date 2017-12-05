@@ -1,0 +1,19 @@
+<!DOCTYPE html><html><head><script type="text/javascript">var ctx = null;size = 30
+    var i = 0;
+    var gameMap = new Array();
+
+    for(i=0;i<=30*30;i++){
+        gameMap[i] = 0;
+    }
+    /*Tile Loading */
+    var image = new Array();
+    image[0].src = "/grass.png";
+    image[1].src = "/gra2ss.png"
+
+    var currentSecond = 0, frameCount = 0, framesLastSecond = 0;
+    window.onload = function()
+    {
+    	ctx = document.getElementById('game').getContext("2d");
+    	requestAnimationFrame(drawGame);
+    	ctx.font = "bold 10pt sans-serif";
+    };
