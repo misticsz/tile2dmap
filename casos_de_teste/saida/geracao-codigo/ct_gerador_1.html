@@ -2,31 +2,120 @@
     var i = 0;
     var gameMap = new Array();
 
+    function findImageByName(name,tile,imageCounter){
+	var i = 0;
+    var aux = 0;
+	while(i<imageCounter){
+		if(tile[i].name==name){
+            aux=i;
+        }
+        i++;
+	}
+    return aux;
+    }
+
+
     for(i=0;i<=20*20;i++){
         gameMap[i] = 0;
     }
     /*Tile Loading */
     var image = new Array();
-    var tiles = new Array();
+    var tile = new Array();
 
-    tile[0] = { 
- path:"http://rimworldwiki.com/images/2/26/Ground_metal_tile.png", name:'grass', action :{queimar: { path:"/grass_queimada.png"},
+    
+
+tile[0] = { 
+ path:"mario/sprite_125.png", name:'grass', action :{queimar: { path:"http://texturelib.com/Textures/grass/grass/grass_grass_0042_01_preview.jpg"},
 crescer: { path:"/tree.png"},}};
+image[0] = new Image(40,40);
 image[0].src = tile[0].path;
+
 tile[1] = { 
- path:"https://d2ujflorbtfzji.cloudfront.net/key-image/d21b73d7-cfd4-4d3a-a634-19dc6e456942.png", name:'grass', action :{queimar: { path:"/grass_queimada.png"},
+ path:"mario/sprite_031.png", name:'bloco', action :{queimar: { path:"http://texturelib.com/Textures/grass/grass/grass_grass_0042_01_preview.jpg.png"},
 crescer: { path:"/tree.png"},}};
+image[1] = new Image(40,40);
 image[1].src = tile[1].path;
 
-    {images}
+tile[2] = { 
+ path:"mario/sprite_000.png", name:'icone'};
+image[2] = new Image(40,40);
+image[2].src = tile[2].path;
 
+
+    
+gameMap[0] = findImageByName("icone",tile,3);
+gameMap[315] = findImageByName("icone",tile,3);
+
+/*Preencher*/
+ var temp; 
+ var it;
+ for(it=0;it<20;it++){
+  temp = it*20;
+ gameMap[temp] =  findImageByName("bloco",tile,3);
+ }
+
+
+    var tileW = 17, tileH = 17;
+    var mapW = 20, mapH = 20;
     var currentSecond = 0, frameCount = 0, framesLastSecond = 0;
+    var currentSecond = 0, frameCount = 0, framesLastSecond = 0;
+
     window.onload = function()
     {
     	ctx = document.getElementById('game').getContext("2d");
     	requestAnimationFrame(drawGame);
     	ctx.font = "bold 10pt sans-serif";
     };
+
+    function drawGame()
+    {
+
+    	if(ctx==null) { return; }
+
+    	var sec = Math.floor(Date.now()/1000);
+    	if(sec!=currentSecond)
+    	{
+    		currentSecond = sec;
+    		framesLastSecond = frameCount;
+    		frameCount = 1;
+    	}
+    	else { frameCount++; }
+
+    	for(var y = 0; y < mapH; ++y)
+    	{
+    		for(var x = 0; x < mapW; ++x)
+    		{
+    			switch(gameMap[((y*mapW)+x)])
+    			{
+                    case 0:
+ ctx.drawImage(image[0],x*tileW,y*tileH);
+ break;
+case 1:
+ ctx.drawImage(image[1],x*tileW,y*tileH);
+ break;
+case 2:
+ ctx.drawImage(image[2],x*tileW,y*tileH);
+ break;
+
+    			}
+
+    		}
+    	}
+
+    	ctx.fillStyle = "#ff0000";
+    	ctx.fillText("-: " + framesLastSecond, 10, 20);
+
+    	requestAnimationFrame(drawGame);
+    }
+    </script>
+
+    </head>
+    <body>
+
+    <canvas id="game" width="1000" height="1000"></canvas>
+
+    </body>
+    </html>
 
 
     

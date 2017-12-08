@@ -1,31 +1,10 @@
 grammar tile;
 
-
-CADEIA:
-    '"' ~('\n' | '\r' | '"')* '"';
-
-COMENTARIO:
-    '//' ~('/' | '\n')* '\n' -> skip;
-
-ESPACO:
-    (' ' | '\t' | '\r' | '\n') -> skip;
-
-ERRO: .;
-
-
-INTEGER_NUMBER
-:   [0-9][0-9]*;
-
-COMMA   :   ',';
-
-ID  :   ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*;
-
-SPACE : (' ' | '\t' | '\r' | '\n') {skip();};
-
-NAME
-    : [a-zA-Z_][a-zA-Z_0-9]*
-    ;
-
+ID :      ('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '0'..'9' | '_')*;
+NUM_INT :    ('0'..'9')+;
+NUM_REAL :   ('0'..'9')+ '.' ('0'..'9')+;
+CADEIA :     '"' ~('\n' | '\r' | '"')* '"';
+WS : 		 [ \n\t\r]+ -> skip;
 
 /* Bloco principal */
 
@@ -43,13 +22,13 @@ recur_commands:  commands | ;
 /* Melhorar loop apenas X e Y */
 
 loop:
-    'preencher' ('horizontal' | 'vertical') INTEGER_NUMBER 'ate' INTEGER_NUMBER ID;
+    'loop' tipo=ID cN=NUM_INT n1=NUM_INT 'ate' n2=NUM_INT nome=ID;
 add:
-    'add' ID 'position' '(' INTEGER_NUMBER INTEGER_NUMBER ')';
+    'add' ID'(' n1=NUM_INT n2=NUM_INT ')';
 remove:
-    'remove' ID 'position' '(' INTEGER_NUMBER INTEGER_NUMBER ')';
+    'remove' ID'(' n1=NUM_INT n2=NUM_INT ')';
 especial:
-    ID ID 'position' '(' INTEGER_NUMBER INTEGER_NUMBER ')';
+    c1=ID c2=ID'(' n1=NUM_INT n2=NUM_INT ')';
 
 tile:
     ID '{' path nivel? acao? '}' recur_tiles;
@@ -64,10 +43,10 @@ recur_tiles:
     tile | ;
 
 size:
-  'size' ':' INTEGER_NUMBER;
+  'size' ':' NUM_INT;
 
 nivel:
-  'nivel' ':' INTEGER_NUMBER;
+  'nivel' ':' NUM_INT;
 
 path:
-  'path' ':' CADEIA;
+'path' ':' CADEIA;

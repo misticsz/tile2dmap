@@ -1,12 +1,11 @@
-//Mapa bem definido
 map(size:20) {
   import {
     grass{
-      path : "http://rimworldwiki.com/images/2/26/Ground_metal_tile.png"
-      nivel : 11
+      path : "mario/sprite_125.png"
+      nivel : 1
       acao {
       queimar {
-        path : "/grass_queimada.png"
+        path : "http://texturelib.com/Textures/grass/grass/grass_grass_0042_01_preview.jpg"
       }
       }
       acao{
@@ -15,12 +14,12 @@ map(size:20) {
       }
       }
     }
-    grass{
-      path : "https://d2ujflorbtfzji.cloudfront.net/key-image/d21b73d7-cfd4-4d3a-a634-19dc6e456942.png"
-      nivel : 11
+    bloco{
+      path : "mario/sprite_031.png"
+      nivel : 1
       acao {
       queimar {
-        path : "/grass_queimada.png"
+        path : "http://texturelib.com/Textures/grass/grass/grass_grass_0042_01_preview.jpg.png"
       }
       }
       acao{
@@ -28,11 +27,15 @@ map(size:20) {
         path : "/tree.png"
       }
       }
+    }
+    icone{
+      path : "mario/sprite_000.png"
+      nivel : 1
     }
   }
   commands{
-    add grass position(20 20)
-    queimar grass position(20 20)
-    preencher horizontal 11 ate 20 grass
+    add icone(0 0)
+    add icone(15 15)
+    loop coluna 8 0 ate 20 bloco
   }
 }
