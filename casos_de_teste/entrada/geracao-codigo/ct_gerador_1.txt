@@ -1,9 +1,8 @@
-//Mapa bem definido
-map(size:20) {
+map(size:2) {
   import {
     grass{
       path : "http://rimworldwiki.com/images/2/26/Ground_metal_tile.png"
-      nivel : 11
+      nivel : 2
       acao {
       queimar {
         path : "/grass_queimada.png"
@@ -17,7 +16,7 @@ map(size:20) {
     }
     grass{
       path : "https://d2ujflorbtfzji.cloudfront.net/key-image/d21b73d7-cfd4-4d3a-a634-19dc6e456942.png"
-      nivel : 11
+      nivel : 1
       acao {
       queimar {
         path : "/grass_queimada.png"
@@ -31,8 +30,11 @@ map(size:20) {
     }
   }
   commands{
-    add grass position(20 20)
-    queimar grass position(20 20)
-    preencher horizontal 11 ate 20 grass
+    add grass position (1 2)
+    add bacon position (1 2)
+    remove grass position (2 1)
+    remove grass position (2 1)
+    queimar grama position (2 2)
+    preencher horizontal 0 ate 5 grass
   }
 }

@@ -1,13 +1,13 @@
-<!DOCTYPE html><html><head><script type="text/javascript">var ctx = null;size = 20
+<!DOCTYPE html><html><head><script type="text/javascript">var ctx = null;size = 2
     var i = 0;
     var gameMap = new Array();
 
-    for(i=0;i<=20*20;i++){
+    for(i=0;i<=2*2;i++){
         gameMap[i] = 0;
     }
     /*Tile Loading */
     var image = new Array();
-    var tiles = new Array();
+    var tile = new Array();
 
     tile[0] = { 
  path:"http://rimworldwiki.com/images/2/26/Ground_metal_tile.png", name:'grass', action :{queimar: { path:"/grass_queimada.png"},
@@ -19,6 +19,27 @@ crescer: { path:"/tree.png"},}};
 image[1].src = tile[1].path;
 
     {images}
+
+    
+gameMap[4] = findImageByName(grass,tile,2);
+gameMap[4] = findImageByName(bacon,tile,2);
+gameMap[5] = 0;
+gameMap[5] = 0;
+ image[findImageByName(grama,tile,2)].src = tile[findImageByName(grama,tile,2)].action.queimar.path;
+
+/*Preencher*/
+ var it;
+ for(it=0;i<5;it++){
+   gameMap[it] =  findImageByName(grass,tile,2);
+ }
+
+    function findImageByName(name,tile,imageCounter){
+    	var i = 0;
+    	while(tile[i].nome!=name){
+    		i++;
+    	}
+    	return i;
+    }
 
     var currentSecond = 0, frameCount = 0, framesLastSecond = 0;
     window.onload = function()

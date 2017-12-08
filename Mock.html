@@ -49,6 +49,15 @@ window.onload = function()
 	ctx.font = "bold 10pt sans-serif";
 };
 
+function findImageByName(name,tile,imageCounter){
+	var i = 0;
+	while(tile[i].nome!=name){
+		i++;
+	}
+	return i;
+}
+
+
 function drawGame()
 {
 

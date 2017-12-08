@@ -1,10 +1,6 @@
 from ANTLR.tileVisitor import *
 from ANTLR.tileParser import *
 
-class Tile():
-    nome = ''
-    acao = []
-
 class GeradorCodigo(tileVisitor):
 
     #Array que armazena as imagens
@@ -13,6 +9,9 @@ class GeradorCodigo(tileVisitor):
     imageCounter = 0
     tileCounter = 0
     acaoCounter = 1
+    size = ''
+    text = ''
+
 
     final = """<!DOCTYPE html><html><head><script type="text/javascript">var ctx = null;size = {size}
     var i = 0;
@@ -23,11 +22,21 @@ class GeradorCodigo(tileVisitor):
     }
     /*Tile Loading */
     var image = new Array();
-    var tiles = new Array();
+    var tile = new Array();
 
     {tiles}
 
     {images}
+
+    {commands}
+
+    function findImageByName(name,tile,imageCounter){
+    	var i = 0;
+    	while(tile[i].nome!=name){
+    		i++;
+    	}
+    	return i;
+    }
 
     var currentSecond = 0, frameCount = 0, framesLastSecond = 0;
     window.onload = function()
@@ -42,9 +51,10 @@ class GeradorCodigo(tileVisitor):
 
 
     def visitMapa(self,ctx: tileParser.MapaContext):
-        size = str(ctx.size().INTEGER_NUMBER())
-        self.final = self.final.replace('{size}',size)
+        self.size = str(ctx.size().NUM_INT())
+        self.final = self.final.replace('{size}',self.size)
         self.final = self.final.replace('{tiles}',str(self.visitTile(ctx.tile())))
+        self.final = self.final.replace('{commands}',str(self.visitCommands(ctx.commands())))
 
     def visitTile(self,ctx: tileParser.TileContext):
         path = str(ctx.path().CADEIA())
@@ -60,6 +70,26 @@ class GeradorCodigo(tileVisitor):
     def visitRecur_acao(self, ctx: tileParser.Recur_acaoContext,i):
         self.acaoCounter+=1
         return "\n"+self.visitAcao(ctx.acao(),i) if ctx.acao() is not None else ''
+
+    def visitCommands(self, ctx: tileParser.CommandsContext):
+
+        if ctx.add() is not None:
+            self.text += '\ngameMap['+str(int(ctx.add().n1.text)*(int(self.size))+(int(ctx.add().n2.text)))+'] = findImageByName('+str(ctx.add().ID())+',tile,'+str(self.imageCounter)+');'
+        if ctx.remove() is not None:
+            self.text += '\ngameMap['+str(int(ctx.remove().n1.text)*(int(self.size))+(int(ctx.remove().n2.text)))+'] = 0;'
+        if ctx.loop() is not None:
+            self.text += '\n\n/*Preencher*/\n var it;\n for(it='+str(ctx.loop().n1.text)+';i<'+str(ctx.loop().n2.text)+';it++){\n   gameMap[it] =  findImageByName('+str(ctx.loop().ID())+',tile,'+str(self.imageCounter)+');\n }'
+        if ctx.especial() is not None:
+            self.text += '\n image[findImageByName('+str(ctx.especial().c2.text)+',tile,'+str(self.imageCounter)+')].src = tile[findImageByName('+str(ctx.especial().c2.text)+',tile,'+str(self.imageCounter)+')].action.'+str(ctx.especial().c1.text)+'.path;'
+
+
+
+        self.visitRecur_commands(ctx.recur_commands())
+
+        return self.text;
+
+    def visitRecur_commands(self, ctx: tileParser.Recur_commandsContext):
+        return "\n"+self.visitCommands(ctx.commands()) if ctx.commands() is not None else ''
 
     def visitRecur_tiles(self, ctx: tileParser.Recur_tilesContext):
         self.imageCounter+=1
