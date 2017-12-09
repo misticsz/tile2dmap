@@ -1,6 +1,19 @@
-//Mapa bem definido
-map(size:20) {
+map(size:30) {
   import {
+    bloco{
+      path : "/grass.png"
+      nivel : 11
+      acao {
+      crescer {
+        path : "/grass_queimada.png"
+      }
+      }
+      acao{
+      subir{
+        path : "/tree.png"
+      }
+      }
+    }
     grass{
       path : "/grass.png"
       nivel : 11
@@ -10,15 +23,14 @@ map(size:20) {
       }
       }
       acao{
-      crescer{
+      lib{
         path : "/tree.png"
       }
       }
     }
   }
   commands{
-    add grass position(20 20)
-    queimar grass position(20 20)
-    preencher horizontal 11 ate 20 grass
+    add bloco(2 2)
+    remove bloco(22 2)
   }
 }

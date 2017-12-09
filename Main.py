@@ -129,7 +129,7 @@ def casos_de_teste_sintatico():
 
 
 def main():
-    casos_de_teste_gerador()
+    casos_de_teste_semantico()
 
 if __name__ == '__main__':
     main()
