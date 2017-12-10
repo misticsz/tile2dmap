@@ -22,11 +22,16 @@ Pyhton3 Main.py
 ```
 
 ## Casos
+
 0 - Apenas SINTATICO
+
 1 - Apenas SEMANTICO
+
 2 - Gerador de Codigo
 
-##Imagens
+
+
+## Imagens
 
 Você pode adqurir varios tiles atraves de spreadsheets , alguns abaixo para conseguir algumas de graça :)
 
@@ -86,14 +91,14 @@ map(size:25) { // MAPA AGUA GELO
 ![Map](https://imgur.com/muHCT4S)
 
 
-##Commands
+## Commands
 
-#Add
+# Add
   add `tile` ( n1 n2 )  com n1 e n2 sendo posicao na matriz
-#Remove
+# Remove
   remove `tile` ( n1 n2 )  com n1 e n2 sendo posicao na matriz
-#Especial
+# Especial
   `acao` `tile` ( n1 n2 )  com n1 e n2 sendo posicao na matriz
-#Loop
+# Loop
   loop `linha` ou `coluna` qual n1 ate n2   n1 e n2 sendo a variacao
 
