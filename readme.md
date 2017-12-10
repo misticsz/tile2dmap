@@ -36,11 +36,19 @@ Pyhton3 Main.py
 Você pode adqurir varios tiles atraves de spreadsheets , alguns abaixo para conseguir algumas de graça :)
 
 
+
 https://opengameart.org/content/2d-complete-characters
+
 http://kenney.nl/
+
 https://crateboy.itch.io/crateboy-2007-2014
 
+
+
 Apos pegar o sprite sheet so dividilos do tamanho exato no site
+
+https://piskelapp.com
+
 
 
 ### Exemplos e como utilizar
@@ -92,6 +100,17 @@ map(size:25) { // MAPA AGUA GELO
 
 
 ## Commands
+
+### Tiles
+
+Formato 
+
+import {
+  `tilename`{
+        path: 'path'
+        nivel: 'nivel'
+        }
+    }
 
 # Add
   add `tile` ( n1 n2 )  com n1 e n2 sendo posicao na matriz
