@@ -141,7 +141,7 @@ class GeradorCodigo(tileVisitor):
                 if(ctx.loop().tipo.text=='linha'):
                     self.text += '\n\n/*Preencher*/\n var temp; \n var it;\n for(it='+str(ctx.loop().n1.text)+';it<'+str(ctx.loop().n2.text)+';it++){\n  temp = it+'+str(int(ctx.loop().cN.text)*(int(self.size)))+';\n gameMap[temp] =  findImageByName("'+str(ctx.loop().nome.text)+'",tile,'+str(self.imageCounter)+');\n }'
                 if(ctx.loop().tipo.text=='coluna'):
-                    self.text += '\n\n/*Preencher*/\n var temp; \n var it;\n for(it='+str(ctx.loop().n1.text)+';it<'+str(ctx.loop().n2.text)+';it++){\n  temp = it*'+str(int(self.size))+';\n gameMap[temp] =  findImageByName("'+str(ctx.loop().nome.text)+'",tile,'+str(self.imageCounter)+');\n }'
+                    self.text += '\n\n/*Preencher*/\n var temp; \n var it;\n for(it='+str(ctx.loop().n1.text)+';it<'+str(ctx.loop().n2.text)+';it++){\n  temp = '+str(int(ctx.loop().cN.text))+'+(it*'+str(int(self.size))+');\n gameMap[temp] =  findImageByName("'+str(ctx.loop().nome.text)+'",tile,'+str(self.imageCounter)+');\n }'
 
             if ctx.especial() is not None:
                 self.text += '\n image[findImageByName("'+str(ctx.especial().c2.text)+'",tile,'+str(self.imageCounter)+')].src = tile[findImageByName("'+str(ctx.especial().c2.text)+'",tile,'+str(self.imageCounter)+')].action.'+str(ctx.especial().c1.text)+'.path;'
@@ -162,7 +162,6 @@ class GeradorCodigo(tileVisitor):
 
     def visitRecur_acao(self, ctx: tileParser.Recur_acaoContext,i):
         self.acaoCounter+=1
-        print(ctx.acao())
         return "\n"+self.visitAcao(ctx.acao(),i) if ctx.acao() is not None else ''
 
     def visitRecur_tiles(self, ctx: tileParser.Recur_tilesContext):

@@ -19,6 +19,8 @@ class Acao:
 
 
 class AnalisadorSemantico(tileVisitor):
+
+    #Variaveis Globais
     size = 0
     imageCounter = 1
     acaoCounter = 0
@@ -29,12 +31,7 @@ class AnalisadorSemantico(tileVisitor):
     acao.append((Acao("/default","default")))
     tile.append((Tiles("/default","default",acao)))
 
-    warnings = ''
-
-
-
-    def get_warnings(self):
-        return self.warnings[:-1]
+    ## - Mensagens de Erro - ##
 
     def get_linha_do_erro(self, dados_do_erro):
         return 'Erro semântico na linha ' + str(dados_do_erro).split(',')[3].split(':')[0] + ': '
@@ -64,17 +61,24 @@ class AnalisadorSemantico(tileVisitor):
     def get_erro_nao_declarada(self,dados,variavel):
         erro = self.get_linha_do_erro(dados) + 'a variavel" ' + variavel + ' " nao existe'
         raise Exception(erro)
+
+
+
+    # Funcao para verficar se variavel esta na tabela #
     def checkTable(self,name,tile,imageCounter):
         for i in range(0, imageCounter):
             if(tile[i].name==name):
                 return 0
         return 1
 
+
+    # Funcao para verficar se acao esta na tabela #
     def checkTableAction(self,name,action):
         for i in action:
             if i.name == name:
                 return 0
         return 1
+
 
     def visitMapa(self, ctx: tileParser.MapaContext):
         self.size = str(ctx.size().NUM_INT());
@@ -92,6 +96,7 @@ class AnalisadorSemantico(tileVisitor):
         if ctx is not None:
             path = str(ctx.path().CADEIA())
             name = str(ctx.ID())
+            # Verficao feita facilmente sendo que criamos um objeto para tiles e dentro de tiles possuimos varias acoes #
             if(self.checkTable(name,self.tile,self.imageCounter)):
                 if ctx.acao() is not None:
                     self.acaoCounter = 1

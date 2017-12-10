@@ -1,41 +1,42 @@
-map(size:20) {
+map(size:25) {
   import {
-    grass{
-      path : "mario/sprite_125.png"
-      nivel : 1
-      acao {
-      queimar {
-        path : "http://texturelib.com/Textures/grass/grass/grass_grass_0042_01_preview.jpg"
-      }
-      }
-      acao{
-      crescer{
-        path : "/tree.png"
-      }
-      }
+
+
+   water{
+            path: "mario/sprite_125.png"
+            nivel : 1
+        }
+
+   ice {
+        path: "mario/sprite_318.png"
+        nivel : 2
+   }
+
+    trap{
+        path: "mario/sprite_087.png"
+        nivel : 2
     }
-    bloco{
-      path : "mario/sprite_031.png"
-      nivel : 1
-      acao {
-      queimar {
-        path : "http://texturelib.com/Textures/grass/grass/grass_grass_0042_01_preview.jpg.png"
-      }
-      }
-      acao{
-      crescer{
-        path : "/tree.png"
-      }
-      }
+
+    tunel{
+        path: "mario/sprite_809.png"
+        nivel : 2
     }
-    icone{
-      path : "mario/sprite_000.png"
-      nivel : 1
     }
-  }
+
   commands{
-    add icone(0 0)
-    add icone(15 15)
-    loop coluna 8 0 ate 20 bloco
+    loop coluna 2 0 ate 2 ice
+    loop linha 2 2 ate 4 ice
+    loop coluna 4 2 ate 4 ice
+    loop linha 4 4 ate 11 ice
+    loop coluna 11 4 ate 14 ice
+    loop linha 11 8 ate 10 ice
+    loop linha 12 12 ate 14 ice
+    loop linha 16 12 ate 19 ice
+    add tunel (11 8)
+    add tunel (16 14)
+    add trap (15 11)
+    add trap (11 14)
+    add trap (13 14)
+    loop coluna 15 11 ate 14 trap
   }
 }

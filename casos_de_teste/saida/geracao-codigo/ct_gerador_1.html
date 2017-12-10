@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><script type="text/javascript">var ctx = null;size = 20
+<!DOCTYPE html><html><head><script type="text/javascript">var ctx = null;size = 25
     var i = 0;
     var gameMap = new Array();
 
@@ -15,48 +15,118 @@
     }
 
 
-    for(i=0;i<=20*20;i++){
+    for(i=0;i<=25*25;i++){
         gameMap[i] = 0;
     }
     /*Tile Loading */
     var image = new Array();
     var tile = new Array();
 
-    
 
-tile[0] = { 
- path:"mario/sprite_125.png", name:'grass', action :{queimar: { path:"http://texturelib.com/Textures/grass/grass/grass_grass_0042_01_preview.jpg"},
-crescer: { path:"/tree.png"},}};
+
+tile[0] = {
+ path:"mario/sprite_125.png", name:'water'};
 image[0] = new Image(40,40);
 image[0].src = tile[0].path;
 
-tile[1] = { 
- path:"mario/sprite_031.png", name:'bloco', action :{queimar: { path:"http://texturelib.com/Textures/grass/grass/grass_grass_0042_01_preview.jpg.png"},
-crescer: { path:"/tree.png"},}};
+tile[1] = {
+ path:"mario/sprite_318.png", name:'ice'};
 image[1] = new Image(40,40);
 image[1].src = tile[1].path;
 
-tile[2] = { 
- path:"mario/sprite_000.png", name:'icone'};
+tile[2] = {
+ path:"mario/sprite_087.png", name:'trap'};
 image[2] = new Image(40,40);
 image[2].src = tile[2].path;
 
+tile[3] = {
+ path:"mario/sprite_809.png", name:'tunel'};
+image[3] = new Image(40,40);
+image[3].src = tile[3].path;
 
-    
-gameMap[0] = findImageByName("icone",tile,3);
-gameMap[315] = findImageByName("icone",tile,3);
+
+
 
 /*Preencher*/
- var temp; 
+ var temp;
  var it;
- for(it=0;it<20;it++){
-  temp = it*20;
- gameMap[temp] =  findImageByName("bloco",tile,3);
+ for(it=0;it<2;it++){
+  temp = 2+(it*25);
+ gameMap[temp] =  findImageByName("ice",tile,4);
+ }
+
+/*Preencher*/
+ var temp;
+ var it;
+ for(it=2;it<4;it++){
+  temp = it+50;
+ gameMap[temp] =  findImageByName("ice",tile,4);
+ }
+
+/*Preencher*/
+ var temp;
+ var it;
+ for(it=2;it<4;it++){
+  temp = 4+(it*25);
+ gameMap[temp] =  findImageByName("ice",tile,4);
+ }
+
+/*Preencher*/
+ var temp;
+ var it;
+ for(it=4;it<11;it++){
+  temp = it+100;
+ gameMap[temp] =  findImageByName("ice",tile,4);
+ }
+
+/*Preencher*/
+ var temp;
+ var it;
+ for(it=4;it<14;it++){
+  temp = 11+(it*25);
+ gameMap[temp] =  findImageByName("ice",tile,4);
+ }
+
+/*Preencher*/
+ var temp;
+ var it;
+ for(it=8;it<10;it++){
+  temp = it+275;
+ gameMap[temp] =  findImageByName("ice",tile,4);
+ }
+
+/*Preencher*/
+ var temp;
+ var it;
+ for(it=12;it<14;it++){
+  temp = it+300;
+ gameMap[temp] =  findImageByName("ice",tile,4);
+ }
+
+/*Preencher*/
+ var temp;
+ var it;
+ for(it=12;it<19;it++){
+  temp = it+400;
+ gameMap[temp] =  findImageByName("ice",tile,4);
+ }
+gameMap[283] = findImageByName("tunel",tile,4);
+gameMap[414] = findImageByName("tunel",tile,4);
+gameMap[386] = findImageByName("trap",tile,4);
+gameMap[289] = findImageByName("trap",tile,4);
+gameMap[339] = findImageByName("trap",tile,4);
+
+/*Preencher*/
+ var temp;
+ var it;
+ for(it=11;it<14;it++){
+  temp = 15+(it*25);
+ gameMap[temp] =  findImageByName("trap",tile,4);
  }
 
 
     var tileW = 17, tileH = 17;
-    var mapW = 20, mapH = 20;
+    var mapW = 25, mapH = 25;
     var currentSecond = 0, frameCount = 0, framesLastSecond = 0;
     var currentSecond = 0, frameCount = 0, framesLastSecond = 0;
 
@@ -96,6 +166,9 @@ case 1:
 case 2:
  ctx.drawImage(image[2],x*tileW,y*tileH);
  break;
+case 3:
+ ctx.drawImage(image[3],x*tileW,y*tileH);
+ break;
 
     			}
 
@@ -103,7 +176,7 @@ case 2:
     	}
 
     	ctx.fillStyle = "#ff0000";
-    	ctx.fillText("-: " + framesLastSecond, 10, 20);
+    	ctx.fillText("FPS: " + framesLastSecond, 10, 20);
 
     	requestAnimationFrame(drawGame);
     }
@@ -116,6 +189,3 @@ case 2:
 
     </body>
     </html>
-
-
-    

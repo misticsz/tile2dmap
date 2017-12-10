@@ -1,36 +1,42 @@
-map(size:30) {
+map(size:25) {
   import {
-    bloco{
-      path : "/grass.png"
-      nivel : 11
-      acao {
-      crescer {
-        path : "/grass_queimada.png"
-      }
-      }
-      acao{
-      subir{
-        path : "/tree.png"
-      }
-      }
+
+
+   water{
+            path: "mario/sprite_125.png"
+            nivel : 1
+        }
+
+   ice {
+        path: "mario/sprite_318.png"
+        nivel : 2
+   }
+
+    trap{
+        path: "mario/sprite_087.png"
+        nivel : 2
     }
-    grass{
-      path : "/grass.png"
-      nivel : 11
-      acao {
-      queimar {
-        path : "/grass_queimada.png"
-      }
-      }
-      acao{
-      lib{
-        path : "/tree.png"
-      }
-      }
+
+    tunel{
+        path: "mario/sprite_809.png"
+        nivel : 2
     }
-  }
+    }
+
   commands{
-    add bloco(2 2)
-    remove bloco(22 2)
+    loop coluna 2 0 ate 2 ice
+    loop linha 2 2 ate 4 ice
+    loop coluna 4 2 ate 4 ice
+    loop linha 4 4 ate 11 ice
+    loop coluna 11 4 ate 14 ice
+    loop linha 11 8 ate 10 ice
+    loop linha 12 12 ate 14 ice
+    loop linha 16 12 ate 19 ice
+    add tunel (11 8)
+    add tunel (16 14)
+    add trap (15 11)
+    add trap (11 14)
+    add trap (13 14)
+    loop coluna 15 11 ate 14 trap
   }
 }

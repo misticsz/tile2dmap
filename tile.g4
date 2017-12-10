@@ -19,8 +19,6 @@ commands:
 
 recur_commands:  commands | ;
 
-/* Melhorar loop apenas X e Y */
-
 loop:
     'loop' tipo=ID cN=NUM_INT n1=NUM_INT 'ate' n2=NUM_INT nome=ID;
 add:

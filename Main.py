@@ -57,8 +57,7 @@ def casos_de_teste_gerador():
                 arquivo_saida.write(codigo_gerado)
                 arquivo_saida.close()
 
-                print('[CT' + str(i) + '_GERADOR] Compilação finalizada' +
-                      (' com warnings. ' if warnings != '' else ' sem erros.'))
+                print('[CT' + str(i) + '_GERADOR] Codigo gerado!')
             except Exception as e:
                 print('[CT' + str(i) + '_GERADOR] ' + str(e), file=sys.stderr)
                 pass
@@ -129,7 +128,16 @@ def casos_de_teste_sintatico():
 
 
 def main():
-    casos_de_teste_semantico()
+        caso = input("Qual o teste?")
+        caso = int(caso)
+        if(caso == 0):
+            print("here")
+            casos_de_teste_sintatico()
+        if(caso == 1):
+            casos_de_teste_semantico()
+        if(caso == 2):
+            casos_de_teste_gerador()
+
 
 if __name__ == '__main__':
     main()
