@@ -1,8 +1,16 @@
 # Tile 2D Map - Universidade Federal de Sao Carlos
 
 Uma linguagem gerada para criação de mapas através da utilização de tiles.
+## Grupo
+
+Gabriel Aguiar Santos - 426415
+Pedro Zani - 408565
+Jonas Karasek - 494755 
+Lucas Govea - 489050
 
 ## Introdução
+
+
 
 ### Prerequisites
 
