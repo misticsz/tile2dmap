@@ -24,9 +24,9 @@ CAMINHO_ARQUIVOS_SAIDA = '/tile2dmap/casos_de_teste/saida/'
 EXECUCAO_CASOS_DE_TESTE = True
 
 def casos_de_teste_gerador():
-    print('----------------------------------------------------------')
-    print('CASOS DE TESTE DO GERADOR DE CÓDIGO - 20 CASOS')
-    print('----------------------------------------------------------')
+    print('-------------------------------------')
+    print('CASOS DE TESTE DO GERADOR DE CÓDIGO ')
+    print('------------------------------------')
     for i in range(1, 2):
         with open(DIRETORIO_PROJETO + CAMINHO_ARQUIVOS_ENTRADA + GERACAO_DE_CODIGO + 'ct_gerador_' + str(i) + '.txt',
                   encoding='utf-8') as caso_de_teste:
